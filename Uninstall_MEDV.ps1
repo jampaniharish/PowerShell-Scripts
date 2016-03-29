@@ -1,0 +1,1 @@
+﻿% {Get-WmiObject -Class win32Reg_AddRemovePrograms -ComputerName DC129721  -filter "DisplayName like '%MED-V%'" -ErrorAction SilentlyContinue | Select @{n='Machine';e={$_.PSComputerName}}, DisplayName, Version, ProdID} #| out-file c:\MEDV_Results.txt -Append #| % {$_.Uninstall()} -WhatIf

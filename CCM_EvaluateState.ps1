@@ -1,0 +1,1 @@
+﻿gwmi -Namespace root\ccm\clientsdk -Class ccm_program -ComputerName tc160260 | select packageid,fullname,evaluationstate | where {$_.evaluationstate -ne 1}

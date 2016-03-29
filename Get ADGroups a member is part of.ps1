@@ -1,0 +1,1 @@
+﻿Get-ADPrincipalGroupMembership -Identity FERGUKE717 | where {$_.Name -like "APPV*"} | Select Name | Sort-Object -Descending
