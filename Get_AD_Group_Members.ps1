@@ -1,31 +1,5 @@
-﻿cls
-# Gets the amount of members in a group
-$GroupName = "*APPV50021*"
-$Groups = (Get-AdGroup -filter * | Where {$_.name -like "$GroupName"} | select name -expandproperty name)
+﻿# Matt Balzan 07-05-2016
 
-$Table = @()
+$ADGroupName = "SCCM Reporting Administrators" # just replace text name_of_your_AD_Group with your AD Group name
 
-$Record = [ordered]@{
-#"Group Name" = ""
-#"Name" = ""
-"Username" = ""
-}
-
-Foreach ($Group in $Groups)
-{
-
-$Arrayofmembers = Get-ADGroupMember -identity $Group | select name,samaccountname
-
-foreach ($Member in $Arrayofmembers)
-{
-#$Record."Group Name" = $Group
-#$Record."Name" = $Member.name
-$Record."UserName" = $Member.samaccountname
-$objRecord = New-Object PSObject -property $Record
-$Table += $objrecord
-
-}
-
-}
-
-$Table #| export-csv "C:\temp\SecurityGroups.csv" -NoTypeInformation
+Get-ADUser -Filter "memberOf -RecursiveMatch '$((Get-ADGroup "$adgroupname").DistinguishedName)'" | Select Name, UserPrincipalName, Enabled | FT
