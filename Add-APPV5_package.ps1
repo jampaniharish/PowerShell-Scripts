@@ -1,5 +1,5 @@
 ﻿cls
-$package = Add-AppvClientPackage -Path "\\xggc\ggcdata\Appv5Content\APPV50001_Orca\APPV50001_Orca_2.appv" | Publish-AppvClientPackage
+$package = Add-AppvClientPackage -Path "C:\APPV50062_T-DOC_Client\APPV50062_T-DOC_Client.appv" | Publish-AppvClientPackage
 
 $i=0;
 Start-Job {Get-AppvClientPackage $args[0] | Mount-AppvClientPackage} -ArgumentList @($($package.Name))

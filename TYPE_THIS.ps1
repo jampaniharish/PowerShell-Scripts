@@ -1,5 +1,4 @@
-#script by M. Balzan 27/08/2015
-<# 
+﻿<# 
 .SYNOPSIS  
 This function will take text written between quotes or single quotes and "type" it on the screen. 
 .DESCRIPTION  

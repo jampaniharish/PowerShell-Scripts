@@ -1,1 +1,1 @@
-﻿gwmi -Namespace root\ccm\clientsdk -Class ccm_program -ComputerName tc160260 | select packageid,fullname,evaluationstate | where {$_.evaluationstate -ne 1}
+﻿gwmi -Namespace root\ccm\clientsdk -Class ccm_application -ComputerName LOCALHOST | SELECT NAME, EVALUATIONSTATE, INSTALLSTATE

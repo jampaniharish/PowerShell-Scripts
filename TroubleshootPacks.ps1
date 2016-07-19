@@ -1,4 +1,3 @@
-# Matt Balzan 05-05-2016
 ﻿$RunProgram ={
 cls
 $packs = (Get-ChildItem C:\Windows\diagnostics\system).Name

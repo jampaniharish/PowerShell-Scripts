@@ -1,8 +1,9 @@
 ﻿#script by M.Balzan 01/02/2015
-#% {Get-WmiObject -Class win32Reg_AddRemovePrograms -ComputerName (gc C:\MEDV_Machines.txt)  -filter "DisplayName like '%MED-V%'" -ErrorAction SilentlyContinue | Select @{n='Machine';e={$_.PSComputerName}}, DisplayName, Version, ProdID} | out-file c:\MEDV_Results.txt -Append #| % {$_.Uninstall()} -WhatIf
+# to import multiple machines use the below line
+#% {Get-WmiObject win32_Product -ComputerName (gc C:\MEDV_Machines.txt) | ? {$_.Name -match "$search"} -ErrorAction SilentlyContinue  | Select @{n='Machine';e={$_.PSComputerName}}, Name, Version, IdentifyingNumber, InstallDate | ft -Wrap -AutoSize} | out-file c:\MEDV_Results.txt -Append #| % {$_.Uninstall()} -WhatIf
 cls
-$computer = "lc124239"
-$search = "virt"
+$computer = "DC150724"
+$search = ""
 if
 (
    Test-Connection -Count 1 -ComputerName $computer -Quiet
@@ -10,7 +11,10 @@ if
 {
 Try
 {
-    Get-WmiObject -Class win32Reg_AddRemovePrograms -ComputerName $computer -filter "DisplayName like '%$search%'" -ErrorAction SilentlyContinue | Select @{n='Machine';e={$_.PSComputerName}}, DisplayName, Version, ProdID, InstallDate | ft -Wrap -AutoSize
+    Get-WmiObject win32_Product -ComputerName $computer  | ? {$_.Name -match "$search"} -ErrorAction SilentlyContinue  | Select @{n='Machine';e={$_.PSComputerName}}, Name, Version, IdentifyingNumber, InstallDate | ft -Wrap -AutoSize
+    
+    #for reports, rem out above line and rem off the below line
+    #Get-WmiObject win32_Product -ComputerName $computer | ? {$_.Name -match "$search"} -ErrorAction SilentlyContinue  | Select @{n='Machine';e={$_.PSComputerName}}, Name, Version, IdentifyingNumber, InstallDate | export-csv c:\arp.csv
     
     }
 Catch [System.exception]
@@ -22,4 +26,3 @@ Else
 {
     write-host "$computer is unreachable."
     }
-

@@ -1,1 +1,1 @@
-﻿Get-ADPrincipalGroupMembership -Identity FERGUKE717 | where {$_.Name -like "APPV*"} | Select Name | Sort-Object -Descending
+﻿Get-ADPrincipalGroupMembership -Identity da-packaging | where {$_.Name -like "APPV50021_BI_RichClient_v4"} | Select Name | Sort-Object -Descending

@@ -8,7 +8,7 @@ $Add_Group_Click
 {
 import-module ActiveDirectory
 
-$server = "xggc-adds-01P.xggc.scot.nhs.uk"
+$server = "xggc-adds-02.xggc.scot.nhs.uk"
 $path = "OU=SCCM Application Deployment Groups,OU=Standard Groups,OU=Groups,DC=xggc,DC=scot,DC=nhs,DC=uk"
 
 # edit the 3 fields below only

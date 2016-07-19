@@ -1,5 +1,5 @@
 ﻿cls
-$FromGroup = "APPV50021_BI_RichClient_v4"
+$FromGroup = "APPV50042_Q-Pulse_6.2_Test"
 
 function Get-ADNestedGroupMembers { 
 <#  
@@ -167,7 +167,7 @@ $modules = get-module | select -expand name
     else {Write-Warning "Active Directory module is not loaded"}        
 }
 
- Get-ADGroup $FromGroup -Server xggc-adds-02| Get-ADNestedGroupMembers | ft -AutoSize -ErrorAction Ignore
+ Get-ADGroup $FromGroup -Server xggc-adds-01| Get-ADNestedGroupMembers | ft -AutoSize -ErrorAction Ignore
  $Total = (Get-ADGroup $FromGroup -Server xggc-adds-02| Get-ADNestedGroupMembers).count
  Write-Host "Total members: $Total" -ForegroundColor Cyan
  Write-Host "If errors occur they probably have a shortcut account added (indicated with a twisty arrow near the account name)" -ForegroundColor Yellow
